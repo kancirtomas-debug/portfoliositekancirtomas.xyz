@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulačka Maliarske Práce Prešov</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* =========================================
+           1. ZÁKLADNÉ CSS (GEEL ŠTÝL)
+           ========================================= */
+        @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:100,200,300,400,500,600,700,100i,200i,300i,400i,500i,600i,700i&display=swap');
+        
+        :root {
+            --action: #ff8700;
+            --action-hover: #ff9a26;
+            --action-ultra-light: #fff3e6;
+            --action-dark: #804400;
+            --black: #000;
+            --white: #fff;
+            --neutral-light: #d9d9d9;
+            --neutral-ultra-light: #f2f2f2;
+            --radius: 1rem;
+            --gutter: 2.4rem;
+            --content-width: 1100px;
+            --transition: all 0.3s ease-in-out;
+            --section-space-m: 6rem;
+        }
+
+        body {
+            font-family: "Josefin Sans", sans-serif;
+            margin: 0;
+            background-color: var(--white);
+            color: #363636;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3 {
+            font-family: "Josefin Sans", sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-top: 0;
+        }
+
+        .container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 var(--gutter);
+        }
+
+        /* =========================================
+           2. HLAVIČKA (HERO)
+           ========================================= */
+        .hero {
+            background-color: #1a1a1a;
+            color: var(--white);
+            padding: 6rem 0 4rem;
+            text-align: center;
+            border-bottom: 5px solid var(--action);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+        }
+        
+        .hero .highlight {
+            color: var(--action);
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #ccc;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        /* =========================================
+           3. KALKULAČKA
+           ========================================= */
+        .calculator-wrapper {
+            background-color: var(--neutral-ultra-light);
+            padding: 4rem 0;
+            flex-grow: 1; /* Aby sa footer posunul dole */
+        }
+
+        .calculator-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: var(--radius);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            max-width: 700px;
+            margin: 0 auto;
+            border: 1px solid var(--neutral-light);
+            position: relative;
+            top: -2rem; /* Jemný posun nahor, aby prekrývala prechod */
+        }
+
+        .calc-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--neutral-ultra-light);
+            padding-bottom: 1rem;
+        }
+
+        .calc-header i {
+            font-size: 2rem;
+            color: var(--action);
+            margin-right: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--neutral-light);
+            border-radius: 0.5rem;
+            font-family: "Josefin Sans", sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--action);
+            background-color: var(--action-ultra-light);
+        }
+
+        /* Checkboxy */
+        .checkbox-wrapper {
+            background: var(--neutral-ultra-light);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        input[type="checkbox"] {
+            width: 1.2rem;
+            height: 1.2rem;
+            accent-color: var(--action);
+        }
+
+        /* Tlačidlo */
+        .btn-action {
+            width: 100%;
+            background-color: var(--action);
+            color: #fff;
+            border: none;
+            padding: 1.2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 2rem;
+            font-family: "Josefin Sans", sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .btn-action:hover {
+            background-color: var(--action-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Výsledok */
+        .result-box {
+            margin-top: 2rem;
+            background: #212121;
+            color: #fff;
+            padding: 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .result-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--action);
+            margin: 0.5rem 0;
+        }
+
+        .result-note {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 1rem;
+        }
+
+        footer {
+            background: #111;
+            color: #666;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .calculator-card { padding: 1.5rem; top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Profesionálne <span class="highlight">maliarske práce</span> Prešov</h1>
+            <p>Rýchly a nezáväzný odhad ceny pre váš projekt.</p>
+        </div>
+    </header>
+
+    <section class="calculator-wrapper">
+        <div class="container">
+            <div class="calculator-card">
+                <div class="calc-header">
+                    <i class="fa-solid fa-calculator"></i>
+                    <h2>Cenová kalkulačka</h2>
+                </div>
+
+                <form id="pricingForm" onsubmit="event.preventDefault(); calculatePrice();">
+                    
+                    <div class="form-group">
+                        <label for="area">Plocha stien (m²)</label>
+                        <input type="number" id="area" class="form-control" placeholder="Zadajte plochu (napr. 150)" required min="1">
+                        <small style="color: #777; display:block; margin-top:5px;">
+                            <i class="fa-solid fa-ruler"></i> Tip: Plocha podlahy × 3 = približná plocha stien.
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="paintType">Typ farby</label>
+                        <select id="paintType" class="form-control">
+                            <option value="3.50">Štandardná biela (3.50 €/m²)</option>
+                            <option value="5.50">Prémiová biela - vysoká belosť (5.50 €/m²)</option>
+                            <option value="7.50">Umývateľná farba (7.50 €/m²)</option>
+                            <option value="9.00">Farebný odtieň na mieru (9.00 €/m²)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="coats">Počet náterov</label>
+                        <select id="coats" class="form-control">
+                            <option value="1">1 náter (Oživenie)</option>
+                            <option value="2" selected>2 nátery (Štandard)</option>
+                            <option value="3">3 nátery (Prekrytie tmavej farby)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Doplnkové služby</label>
+                        <div class="checkbox-wrapper">
+                            <label class="checkbox-group">
+                                <input type="checkbox" id="penetration" value="1.20"> Penetrácia (+1.20€)
+                            </label>
+                            <label class="checkbox-group">
+                                <input type="checkbox" id="repairs" value="2.50"> Opravy stien (+2.50€)
+                            </label>
+                            <label class="checkbox-group">
+                                <input type="checkbox" id="covering" value="0.80"> Zakrývanie (+0.80€)
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-action">Vypočítať cenu</button>
+
+                </form>
+
+                <div id="result" class="result-box">
+                    <span style="text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Odhadovaná cena:</span>
+                    <div id="finalPrice" class="result-price">0.00 €</div>
+                    <p id="breakdownText" style="font-size: 0.95rem; opacity: 0.8; margin-top:0;"></p>
+                    <p class="result-note">* Cena je orientačná vrátane práce a materiálu. Pre presnú ponuku nás kontaktujte.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2024 Profesionálne maliarske práce Prešov
+    </footer>
+
+    <script>
+        function calculatePrice() {
+            // 1. Získanie hodnôt
+            const area = parseFloat(document.getElementById('area').value);
+            const paintPriceBase = parseFloat(document.getElementById('paintType').value);
+            const coats = parseInt(document.getElementById('coats').value);
+            
+            // Validácia
+            if (isNaN(area) || area <= 0) {
+                alert("Prosím, zadajte platnú plochu stien.");
+                return;
+            }
+
+            // Doplnky
+            let extraCostPerM2 = 0;
+            if (document.getElementById('penetration').checked) extraCostPerM2 += parseFloat(document.getElementById('penetration').value);
+            if (document.getElementById('repairs').checked) extraCostPerM2 += parseFloat(document.getElementById('repairs').value);
+            if (document.getElementById('covering').checked) extraCostPerM2 += parseFloat(document.getElementById('covering').value);
+
+            // 2. Logika výpočtu
+            // Zjednodušený model: (Cena farby * koeficient náterov) + doplnky
+            let coatMultiplier = 1;
+            if (coats === 2) coatMultiplier = 1.8;
+            if (coats === 3) coatMultiplier = 2.6;
+
+            const paintingCost = area * paintPriceBase * coatMultiplier;
+            const extraCost = area * extraCostPerM2;
+            const total = paintingCost + extraCost;
+
+            // 3. Zobrazenie
+            const resultBox = document.getElementById('result');
+            const priceEl = document.getElementById('finalPrice');
+            const breakdownEl = document.getElementById('breakdownText');
+
+            resultBox.style.display = 'block';
+            
+            // Animácia čísla
+            let currentVal = 0;
+            const step = total / 20;
+            const timer = setInterval(() => {
+                currentVal += step;
+                if(currentVal >= total) {
+                    currentVal = total;
+                    clearInterval(timer);
+                }
+                priceEl.innerText = currentVal.toFixed(2) + " €";
+            }, 20);
+
+            breakdownEl.innerHTML = `Maľovanie: ${paintingCost.toFixed(2)} € &bull; Príprava: ${extraCost.toFixed(2)} €`;
+
+            // Scroll na výsledok (pre mobily)
+            resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>
