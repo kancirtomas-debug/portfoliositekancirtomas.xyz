@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulačka Zatepľovania Fasád</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. ZÁKLADNÉ PREMENNÉ A ŠTÝLY (Inšpirované tvojím CSS) --- */
+        :root {
+            --primary-color: #f86011; /* Oranžová z CSS */
+            --primary-hover: #d94e09;
+            --text-color: #ffffff;
+            --bg-overlay: rgba(0, 0, 0, 0.7);
+            --input-bg: #1e1e1e;
+            --input-border: #333;
+            --border-radius: 10px; /* Z CSS button-border-radius */
+            --font-family: 'DM Sans', Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-family);
+            background-color: #121212;
+            /* Simulácia pozadia z CSS #style-lR7t9 */
+            background-image: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, #121212 100%), url('https://prerobimeto.sk/wp-content/uploads/2025/03/sadrokartonove-prace3-1200x675.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+
+        /* --- 2. HLAVIČKA A TEXT --- */
+        .calculator-card {
+            background-color: rgba(20, 20, 20, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            font-size: 42px; /* Podľa CSS h1 */
+            font-weight: 500;
+            margin-top: 0;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            color: var(--text-color);
+            text-align: center;
+        }
+
+        h1 span {
+            color: var(--primary-color);
+        }
+
+        .description {
+            text-align: center;
+            font-size: 18px;
+            color: #ccc;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        /* --- 3. FORMULÁR --- */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 { font-size: 32px; }
+            .calculator-card { padding: 25px; }
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 15px;
+            color: #ddd;
+        }
+
+        input[type="number"], select {
+            background-color: var(--input-bg);
+            border: 1px solid var(--input-border);
+            color: #fff;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-family: var(--font-family);
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input[type="number"]:focus, select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(248, 96, 17, 0.2);
+        }
+
+        /* Checkbox styling */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            background-color: var(--input-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--input-border);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .checkbox-group:hover {
+            border-color: #555;
+        }
+
+        .checkbox-group input {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            accent-color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        /* Button - Inšpirovaný CSS #style-jpIcO */
+        .btn-calculate {
+            grid-column: 1 / -1;
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 18px 30px;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .btn-calculate:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(248, 96, 17, 0.3);
+        }
+
+        /* --- 4. VÝSLEDOK --- */
+        .result-box {
+            grid-column: 1 / -1;
+            margin-top: 30px;
+            padding: 25px;
+            background-color: #222;
+            border-left: 5px solid var(--primary-color);
+            border-radius: 5px;
+            display: none; /* Skryté pri načítaní */
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-title {
+            font-size: 16px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .result-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .result-note {
+            font-size: 14px;
+            color: #777;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="calculator-card">
+            <h1>Kalkulácia <span>Zatepľovania</span></h1>
+            
+            <p class="description">
+                Okrem tepelnej izolácie zabezpečuje zateplenie aj ochranu pred poveternostnými vplyvmi a znižuje riziko vzniku plesní vo vnútorných priestoroch. Každý projekt riešim individuálne – od návrhu vhodného riešenia až po finálnu úpravu fasády.
+            </p>
+
+            <form id="calcForm" onsubmit="event.preventDefault(); calculatePrice();">
+                <div class="form-grid">
+                    
+                    <div class="form-group">
+                        <label for="area">Plocha fasády (m²)</label>
+                        <input type="number" id="area" placeholder="Zadajte plochu" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="material">Typ izolácie</label>
+                        <select id="material">
+                            <option value="eps">Polystyrén (EPS)</option>
+                            <option value="wool">Minerálna vlna</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="thickness">Hrúbka izolácie</label>
+                        <select id="thickness">
+                            <option value="10">10 cm</option>
+                            <option value="15" selected>15 cm (Štandard)</option>
+                            <option value="20">20 cm (Nízkoenergetické)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Doplnkové služby</label>
+                        <label class="checkbox-group">
+                            <input type="checkbox" id="scaffolding" checked>
+                            Lešenie (Montáž a demontáž)
+                        </label>
+                    </div>
+
+                    <div class="form-group" style="justify-content: flex-end;">
+                        <label>&nbsp;</label> <label class="checkbox-group">
+                            <input type="checkbox" id="silicone" checked>
+                            Silikónová omietka (Finálna úprava)
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-calculate">Vypočítať odhadovanú cenu</button>
+
+                    <div id="result" class="result-box">
+                        <div class="result-title">Orientačná cena realizácie:</div>
+                        <div class="result-value" id="finalPrice">0,00 €</div>
+                        <div class="result-note">* Cena zahŕňa materiál a prácu. Pre presnú cenovú ponuku je nutná obhliadka.</div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function calculatePrice() {
+            // 1. Získanie hodnôt
+            const area = parseFloat(document.getElementById('area').value);
+            const materialType = document.getElementById('material').value;
+            const thickness = parseInt(document.getElementById('thickness').value);
+            const hasScaffolding = document.getElementById('scaffolding').checked;
+            const hasSilicone = document.getElementById('silicone').checked;
+
+            if (isNaN(area) || area <= 0) {
+                alert("Prosím zadajte platnú plochu fasády.");
+                return;
+            }
+
+            // 2. Nastavenie cien (Orientačné trhové ceny práce + materiálu za m2)
+            let basePrice = 0;
+
+            // Základná cena podľa materiálu (pre 10cm hrúbku)
+            if (materialType === 'eps') {
+                basePrice = 55; // Polystyrén
+            } else {
+                basePrice = 75; // Minerálna vlna (drahšia)
+            }
+
+            // Príplatok za hrúbku
+            if (thickness === 15) {
+                basePrice += 8;
+            } else if (thickness === 20) {
+                basePrice += 16;
+            }
+
+            // Príplatky
+            let extraCosts = 0;
+            if (hasScaffolding) {
+                extraCosts += 6; // Cena lešenia na m2
+            }
+            if (hasSilicone) {
+                extraCosts += 12; // Cena kvalitnej omietky na m2
+            }
+
+            // 3. Výpočet
+            const pricePerM2 = basePrice + extraCosts;
+            const totalPrice = area * pricePerM2;
+
+            // 4. Zobrazenie výsledku
+            const resultBox = document.getElementById('result');
+            const priceText = document.getElementById('finalPrice');
+
+            // Formátovanie na menu
+            priceText.innerText = totalPrice.toLocaleString('sk-SK', { style: 'currency', currency: 'EUR' });
+            
+            resultBox.style.display = 'block';
+            
+            // Scroll na výsledok (pre mobily)
+            resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+
+</body>
+</html>
