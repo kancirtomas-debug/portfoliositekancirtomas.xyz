@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Výstavba múrikov a plotov - ZAVO</title>
+    <style>
+        /* --- 1. TVOJE PÔVODNÉ CSS (ZAVO ŠTÝL) --- */
+        @font-face { 
+          font-family:'poppinsregular';
+          font-display:swap;
+          src:url('https://zavosro.sk/templates/site/fonts/poppins-regular-webfont.eot');
+          src:url('https://zavosro.sk/templates/site/fonts/poppins-regular-webfont.eot#iefix') format('embedded-opentype'),url('https://zavosro.sk/templates/site/fonts/poppins-regular-webfont.woff2') format('woff2'),url('https://zavosro.sk/templates/site/fonts/poppins-regular-webfont.woff') format('woff'),url('https://zavosro.sk/templates/site/fonts/poppins-regular-webfont.ttf') format('truetype'),url('https://zavosro.sk/templates/site/fonts/poppins-regular-webfont.svg#poppinsregular') format('svg');
+          font-weight:normal;
+          font-style:normal;
+        } 
+        @font-face { 
+          font-family:'poppins-bold';
+          font-display:swap;
+          src:url('https://zavosro.sk/templates/site/fonts/poppins-bold-webfont.eot');
+          src:url('https://zavosro.sk/templates/site/fonts/poppins-bold-webfont.eot#iefix') format('embedded-opentype'),url('https://zavosro.sk/templates/site/fonts/poppins-bold-webfont.woff2') format('woff2'),url('https://zavosro.sk/templates/site/fonts/poppins-bold-webfont.woff') format('woff'),url('https://zavosro.sk/templates/site/fonts/poppins-bold-webfont.ttf') format('truetype'),url('https://zavosro.sk/templates/site/fonts/poppins-bold-webfont.svg#poppins-bold') format('svg');
+          font-weight:normal;
+          font-style:normal;
+        } 
+        
+        body {  
+            font-weight:inherit;
+            font-family: poppinsregular, Arial, Helvetica, sans-serif;
+            font-style:inherit;
+            font-size:14px;
+            list-style:none;
+            line-height:1.6;
+            color:rgba(0,0,0,1);
+            background-color:#fff;
+            margin: 0;
+        }  
+        
+        * { 
+            -webkit-box-sizing: border-box; 
+            -moz-box-sizing: border-box; 
+            box-sizing: border-box;
+            outline: 0; 
+        } 
+
+        /* Grid System */
+        .container {
+            margin-right: auto;
+            margin-left: auto;
+            padding-left: 15px;
+            padding-right: 15px;
+            max-width: 1200px;
+        }
+        .container:before, .container:after, .row:before, .row:after {
+            display: table;
+            content: " ";
+            clear: both;
+        }
+        .row {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+        .col-md-12, .col-md-6, .col-md-4 {
+            position: relative;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+            float: left;
+        }
+        .col-md-12 { width: 100%; }
+        
+        @media (min-width: 992px) {
+            .col-md-6 { width: 50%; }
+            .col-md-4 { width: 33.33333333%; }
+        }
+
+        h1, h2, h3 { 
+            font-family: 'poppins-bold', Arial, Helvetica, sans-serif; 
+            color: rgba(0,0,0,1); 
+            line-height: 1.2;
+        } 
+
+        h1 { font-size: 36px; margin-bottom: 20px; }
+        h2 { font-size: 28px; margin-bottom: 15px; }
+        
+        p { margin: 0 0 15px; font-size: 15px; color: #555; }
+        
+        /* Odkazy a farby */
+        a, a:visited { color: rgba(244,170,35,1); text-decoration: none; }
+        a:hover { color: #23527c; text-decoration: underline; }
+
+        /* --- 2. ŠTÝLY PRE KALKULAČKU --- */
+        .header-section {
+            padding: 50px 0;
+            background-color: #f4f4f4;
+            border-bottom: 4px solid rgba(244,170,35,1); /* Zavo oranžová */
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .calculator-wrapper {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .calc-title {
+            font-family: 'poppins-bold', sans-serif;
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: #333;
+            border-left: 5px solid rgba(244,170,35,1);
+            padding-left: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 14px;
+            color: #555;
+            background-color: #fdfdfd;
+            border: 1px solid #ccc;
+            border-radius: 0; 
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: rgba(244,170,35,1);
+        }
+
+        /* Tlačidlo */
+        .btn-calc {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            font-family: 'poppins-bold', sans-serif;
+            text-transform: uppercase;
+            color: #fff;
+            background-color: rgba(244,170,35,1);
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-calc:hover {
+            background-color: #d8900d;
+        }
+
+        /* Výsledok */
+        .result-box {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #222;
+            color: #fff;
+            display: none;
+        }
+
+        .result-price {
+            font-size: 36px;
+            font-family: 'poppins-bold', sans-serif;
+            color: rgba(244,170,35,1);
+            margin: 10px 0;
+        }
+
+        /* Info karty */
+        .info-card {
+            background: #fcfcfc;
+            border: 1px solid #eee;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+        .info-card:hover {
+            border-color: rgba(244,170,35,1);
+        }
+        .info-card h3 {
+            font-size: 18px;
+            margin-top: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="header-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Výstavba múrikov a plotov</h1>
+                    <p style="font-size: 18px; max-width: 800px; margin: 0 auto;">Bezpečnosť a estetika sú našou prioritou pri každom type plotu.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container" style="padding-bottom: 60px;">
+        <div class="row">
+            
+            <div class="col-md-6">
+                <div style="padding-right: 20px;">
+                    <h2>Ponúkame širokú škálu riešení</h2>
+                    <p>
+                        Ponúkame širokú škálu plotových riešení od klasických 
+
+[Image of wooden fence]
+ drevených plotov po moderné  oceľové alebo  betónové ploty. 
+                        Okrem výstavby nových múrikov a plotov poskytujeme aj služby opráv a údržby existujúcich štruktúr.
+                    </p>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="info-card">
+                                <h3>Dlhodobá odolnosť</h3>
+                                <p>Dbáme na dlhodobú odolnosť a kvalitu našich prác. Materiály vyberáme tak, aby odolali času aj počasiu.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="info-card">
+                                <h3>Kompletný servis</h3>
+                                <p>Zabezpečíme všetko od výkopových prác, cez betonáž základov až po finálnu montáž plotových dielcov.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="calculator-wrapper">
+                    <h3 class="calc-title">Nezáväzná kalkulácia</h3>
+                    
+                    <form id="fenceForm">
+                        <div class="form-group">
+                            <label for="length">Dĺžka plotu (metre):</label>
+                            <input type="number" id="length" class="form-control" placeholder="napr. 25" min="1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="height">Výška plotu (metre):</label>
+                            <input type="number" id="height" class="form-control" placeholder="napr. 1.8" min="0.5" step="0.1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="material">Typ plotu:</label>
+                            <select id="material" class="form-control">
+                                <option value="wood">Klasický drevený plot (od 45 €/m²)</option>
+                                <option value="concrete">Betónový plot (od 65 €/m²)</option>
+                                <option value="steel">Oceľový plot (od 110 €/m²)</option>
+                                <option value="gabion">Gabiónový múrik (od 130 €/m²)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="foundation">Základy:</label>
+                            <select id="foundation" class="form-control">
+                                <option value="yes">Potrebujem betónový základ (+35 €/bm)</option>
+                                <option value="no">Základy už mám hotové</option>
+                            </select>
+                        </div>
+
+                        <button type="button" class="btn-calc" onclick="calculateFence()">Vypočítať cenu</button>
+                    </form>
+
+                    <div id="result" class="result-box">
+                        <span style="text-transform: uppercase; font-size: 12px; letter-spacing: 1px;">Orientačná cena:</span>
+                        <div class="result-price" id="totalPrice">0 €</div>
+                        <p style="font-size: 13px; color: #ccc; margin:0;">
+                            * Cena zahŕňa prácu a materiál. Je to hrubý odhad, pre presnú cenu nás kontaktujte.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function calculateFence() {
+            // 1. Získanie hodnôt
+            const length = parseFloat(document.getElementById('length').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const materialType = document.getElementById('material').value;
+            const foundation = document.getElementById('foundation').value;
+
+            // Validácia
+            if (isNaN(length) || isNaN(height) || length <= 0 || height <= 0) {
+                alert("Prosím zadajte platnú dĺžku a výšku plotu.");
+                return;
+            }
+
+            // 2. Ceny (nastaviteľné)
+            let pricePerM2 = 0;
+            switch (materialType) {
+                case 'wood': pricePerM2 = 45; break;
+                case 'concrete': pricePerM2 = 65; break;
+                case 'steel': pricePerM2 = 110; break;
+                case 'gabion': pricePerM2 = 130; break;
+            }
+
+            // 3. Výpočet
+            const area = length * height;
+            const materialCost = area * pricePerM2;
+
+            let foundationCost = 0;
+            if (foundation === 'yes') {
+                foundationCost = length * 35; // Cena základu za bežný meter
+            }
+
+            const total = materialCost + foundationCost;
+
+            // 4. Zobrazenie
+            const resultBox = document.getElementById('result');
+            const totalPriceElement = document.getElementById('totalPrice');
+
+            // Formátovanie na menu
+            totalPriceElement.innerText = total.toLocaleString('sk-SK', { style: 'currency', currency: 'EUR' });
+            
+            resultBox.style.display = "block";
+            // Jemný scroll k výsledku
+            resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>
