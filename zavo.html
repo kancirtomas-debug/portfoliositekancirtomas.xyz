@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Výstavba múrikov a plotov - ZAVO</title>
     <style>
-        /* --- 1. TVOJE PÔVODNÉ CSS (ZAVO ŠTÝL) --- */
+        /* --- 1. PÔVODNÉ ZAVO FONTY A RESET --- */
         @font-face { 
           font-family:'poppinsregular';
           font-display:swap;
@@ -26,51 +26,21 @@
         body {  
             font-weight:inherit;
             font-family: poppinsregular, Arial, Helvetica, sans-serif;
-            font-style:inherit;
             font-size:14px;
-            list-style:none;
             line-height:1.6;
             color:rgba(0,0,0,1);
             background-color:#fff;
             margin: 0;
         }  
         
-        * { 
-            -webkit-box-sizing: border-box; 
-            -moz-box-sizing: border-box; 
-            box-sizing: border-box;
-            outline: 0; 
-        } 
+        * { box-sizing: border-box; outline: 0; } 
 
-        /* Grid System */
         .container {
             margin-right: auto;
             margin-left: auto;
             padding-left: 15px;
             padding-right: 15px;
             max-width: 1200px;
-        }
-        .container:before, .container:after, .row:before, .row:after {
-            display: table;
-            content: " ";
-            clear: both;
-        }
-        .row {
-            margin-right: -15px;
-            margin-left: -15px;
-        }
-        .col-md-12, .col-md-6, .col-md-4 {
-            position: relative;
-            min-height: 1px;
-            padding-right: 15px;
-            padding-left: 15px;
-            float: left;
-        }
-        .col-md-12 { width: 100%; }
-        
-        @media (min-width: 992px) {
-            .col-md-6 { width: 50%; }
-            .col-md-4 { width: 33.33333333%; }
         }
 
         h1, h2, h3 { 
@@ -80,116 +50,143 @@
         } 
 
         h1 { font-size: 36px; margin-bottom: 20px; }
-        h2 { font-size: 28px; margin-bottom: 15px; }
         
-        p { margin: 0 0 15px; font-size: 15px; color: #555; }
-        
-        /* Odkazy a farby */
-        a, a:visited { color: rgba(244,170,35,1); text-decoration: none; }
-        a:hover { color: #23527c; text-decoration: underline; }
+        /* Farby ZAVO */
+        :root {
+            --zavo-orange: rgba(244,170,35,1);
+            --zavo-dark: #222;
+        }
 
-        /* --- 2. ŠTÝLY PRE KALKULAČKU --- */
+        /* --- 2. HLAVIČKA --- */
         .header-section {
             padding: 50px 0;
             background-color: #f4f4f4;
-            border-bottom: 4px solid rgba(244,170,35,1); /* Zavo oranžová */
+            border-bottom: 4px solid var(--zavo-orange);
             text-align: center;
-            margin-bottom: 40px;
         }
 
-        .calculator-wrapper {
+        /* --- 3. LAYOUT KALKULAČKY --- */
+        .calculator-section {
+            background-color: #fafafa;
+            padding: 60px 0 80px;
+            border-top: 1px solid #eee;
+        }
+
+        .calc-layout {
+            display: flex;
+            gap: 30px; 
+            align-items: stretch; /* Rovnaká výška stĺpcov */
+        }
+
+        /* Ľavá strana - Formulár */
+        .calc-form-side {
+            flex: 1;
             background: #fff;
+            padding: 40px;
             border: 1px solid #ddd;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border-top: 4px solid var(--zavo-dark);
         }
 
-        .calc-title {
+        /* Pravá strana - Cena */
+        .calc-result-side {
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Box s výsledkom */
+        .result-box {
+            background-color: var(--zavo-dark);
+            color: #fff;
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 5px solid var(--zavo-orange);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            /* Rozloženie obsahu */
+            height: 100%; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Rozdelí vrch a spodok */
+        }
+
+        .result-title {
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+            color: #aaa;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .result-price {
+            font-size: 42px;
             font-family: 'poppins-bold', sans-serif;
-            font-size: 22px;
-            margin-bottom: 25px;
-            color: #333;
-            border-left: 5px solid rgba(244,170,35,1);
-            padding-left: 15px;
+            color: var(--zavo-orange);
+            margin: 0 0 15px; /* Menšia medzera pod cenou */
+            line-height: 1;
         }
 
-        .form-group {
-            margin-bottom: 20px;
+        .result-note {
+            font-size: 13px; 
+            color: #ccc; 
+            margin: 0; 
+            line-height: 1.5;
+            padding-bottom: 20px; /* Oddelenie od spodnej časti */
         }
 
+        /* Spodná časť boxu - Detaily */
+        .result-bottom-content {
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            margin-top: auto; /* Tlačí to na spodok */
+        }
+
+        .result-details {
+            text-align: left;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        /* Prvky formulára */
+        .form-group { margin-bottom: 25px; }
         .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
             color: #222;
+            font-family: 'poppins-bold', sans-serif;
         }
 
         .form-control {
             display: block;
             width: 100%;
-            padding: 12px 15px;
-            font-size: 14px;
+            padding: 15px;
+            font-size: 15px;
             color: #555;
             background-color: #fdfdfd;
             border: 1px solid #ccc;
             border-radius: 0; 
             transition: border-color 0.3s;
         }
-
         .form-control:focus {
-            border-color: rgba(244,170,35,1);
+            border-color: var(--zavo-orange);
         }
 
-        /* Tlačidlo */
-        .btn-calc {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            font-size: 16px;
-            font-family: 'poppins-bold', sans-serif;
-            text-transform: uppercase;
-            color: #fff;
-            background-color: rgba(244,170,35,1);
-            border: none;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin-top: 20px;
-        }
-
-        .btn-calc:hover {
-            background-color: #d8900d;
-        }
-
-        /* Výsledok */
-        .result-box {
-            margin-top: 30px;
-            padding: 20px;
-            background-color: #222;
-            color: #fff;
-            display: none;
-        }
-
-        .result-price {
-            font-size: 36px;
-            font-family: 'poppins-bold', sans-serif;
-            color: rgba(244,170,35,1);
-            margin: 10px 0;
-        }
-
-        /* Info karty */
-        .info-card {
-            background: #fcfcfc;
-            border: 1px solid #eee;
-            padding: 20px;
-            margin-bottom: 20px;
-            transition: 0.3s;
-        }
-        .info-card:hover {
-            border-color: rgba(244,170,35,1);
-        }
-        .info-card h3 {
-            font-size: 18px;
-            margin-top: 0;
+        /* Responsivita */
+        @media (max-width: 900px) {
+            .calc-layout {
+                flex-direction: column-reverse; 
+                gap: 20px;
+            }
+            .calc-result-side {
+                width: 100%;
+                height: auto;
+            }
+            .result-box {
+                padding: 30px;
+                min-height: 250px;
+            }
         }
 
     </style>
@@ -198,119 +195,107 @@
 
     <header class="header-section">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>Výstavba múrikov a plotov</h1>
-                    <p style="font-size: 18px; max-width: 800px; margin: 0 auto;">Bezpečnosť a estetika sú našou prioritou pri každom type plotu.</p>
-                </div>
-            </div>
+            <h1>Výstavba múrikov a plotov</h1>
+            <p style="font-size: 18px; max-width: 800px; margin: 0 auto;">Bezpečnosť a estetika sú našou prioritou pri každom type plotu.</p>
         </div>
     </header>
 
-    <div class="container" style="padding-bottom: 60px;">
-        <div class="row">
+    <section class="calculator-section">
+        <div class="container">
             
-            <div class="col-md-6">
-                <div style="padding-right: 20px;">
-                    <h2>Ponúkame širokú škálu riešení</h2>
-                    <p>
-                        Ponúkame širokú škálu plotových riešení od klasických 
-
-[Image of wooden fence]
- drevených plotov po moderné  oceľové alebo  betónové ploty. 
-                        Okrem výstavby nových múrikov a plotov poskytujeme aj služby opráv a údržby existujúcich štruktúr.
-                    </p>
+            <div class="calc-layout">
+                
+                <div class="calc-form-side">
+                    <h3 style="margin-bottom: 30px; border-left: 5px solid var(--zavo-orange); padding-left: 15px;">
+                        Nezáväzná kalkulácia
+                    </h3>
                     
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="info-card">
-                                <h3>Dlhodobá odolnosť</h3>
-                                <p>Dbáme na dlhodobú odolnosť a kvalitu našich prác. Materiály vyberáme tak, aby odolali času aj počasiu.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="info-card">
-                                <h3>Kompletný servis</h3>
-                                <p>Zabezpečíme všetko od výkopových prác, cez betonáž základov až po finálnu montáž plotových dielcov.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="calculator-wrapper">
-                    <h3 class="calc-title">Nezáväzná kalkulácia</h3>
-                    
-                    <form id="fenceForm">
+                    <form id="fenceForm" onsubmit="event.preventDefault();">
                         <div class="form-group">
-                            <label for="length">Dĺžka plotu (metre):</label>
-                            <input type="number" id="length" class="form-control" placeholder="napr. 25" min="1" required>
+                            <label for="length">Dĺžka plotu (metre)</label>
+                            <input type="number" id="length" class="form-control" placeholder="Zadajte dĺžku (napr. 25)" min="1">
                         </div>
 
                         <div class="form-group">
-                            <label for="height">Výška plotu (metre):</label>
-                            <input type="number" id="height" class="form-control" placeholder="napr. 1.8" min="0.5" step="0.1" required>
+                            <label for="height">Výška plotu (metre)</label>
+                            <input type="number" id="height" class="form-control" placeholder="Zadajte výšku (napr. 1.8)" min="0.5" step="0.1">
                         </div>
 
                         <div class="form-group">
-                            <label for="material">Typ plotu:</label>
+                            <label for="material">Typ plotu</label>
                             <select id="material" class="form-control">
-                                <option value="wood">Klasický drevený plot (od 45 €/m²)</option>
-                                <option value="concrete">Betónový plot (od 65 €/m²)</option>
-                                <option value="steel">Oceľový plot (od 110 €/m²)</option>
-                                <option value="gabion">Gabiónový múrik (od 130 €/m²)</option>
+                                <option value="wood">Klasický drevený plot (45 €/m²)</option>
+                                <option value="concrete">Betónový plot (65 €/m²)</option>
+                                <option value="steel">Oceľový plot (110 €/m²)</option>
+                                <option value="gabion">Gabiónový múrik (130 €/m²)</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="foundation">Základy:</label>
+                            <label for="foundation">Základy</label>
                             <select id="foundation" class="form-control">
                                 <option value="yes">Potrebujem betónový základ (+35 €/bm)</option>
                                 <option value="no">Základy už mám hotové</option>
                             </select>
                         </div>
-
-                        <button type="button" class="btn-calc" onclick="calculateFence()">Vypočítať cenu</button>
                     </form>
+                </div>
 
-                    <div id="result" class="result-box">
-                        <span style="text-transform: uppercase; font-size: 12px; letter-spacing: 1px;">Orientačná cena:</span>
-                        <div class="result-price" id="totalPrice">0 €</div>
-                        <p style="font-size: 13px; color: #ccc; margin:0;">
-                            * Cena zahŕňa prácu a materiál. Je to hrubý odhad, pre presnú cenu nás kontaktujte.
-                        </p>
+                <div class="calc-result-side">
+                    <div class="result-box">
+                        
+                        <div>
+                            <span class="result-title">Orientačná cena realizácie</span>
+                            <div class="result-price" id="totalPrice">0,00 €</div>
+                            <p class="result-note">
+                                Cena zahŕňa prácu a materiál. Ide o hrubý odhad. Pre presnú ponuku je nutná obhliadka.
+                            </p>
+                        </div>
+
+                        <div class="result-bottom-content">
+                            <div id="priceDetails" class="result-details">
+                                Zadajte dĺžku a výšku plotu.
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
-    </div>
+    </section>
 
     <script>
+        // 1. Získanie elementov
+        const inputs = document.querySelectorAll('input, select');
+        const totalPriceElement = document.getElementById('totalPrice');
+        const priceDetailsElement = document.getElementById('priceDetails');
+
+        // 2. Funkcia výpočtu
         function calculateFence() {
-            // 1. Získanie hodnôt
             const length = parseFloat(document.getElementById('length').value);
             const height = parseFloat(document.getElementById('height').value);
             const materialType = document.getElementById('material').value;
             const foundation = document.getElementById('foundation').value;
 
-            // Validácia
+            // Ak nie sú čísla platné
             if (isNaN(length) || isNaN(height) || length <= 0 || height <= 0) {
-                alert("Prosím zadajte platnú dĺžku a výšku plotu.");
+                totalPriceElement.innerText = "0,00 €";
+                priceDetailsElement.innerHTML = "Zadajte dĺžku a výšku plotu.";
                 return;
             }
 
-            // 2. Ceny (nastaviteľné)
+            // Ceny
             let pricePerM2 = 0;
+            let materialName = "";
             switch (materialType) {
-                case 'wood': pricePerM2 = 45; break;
-                case 'concrete': pricePerM2 = 65; break;
-                case 'steel': pricePerM2 = 110; break;
-                case 'gabion': pricePerM2 = 130; break;
+                case 'wood': pricePerM2 = 45; materialName = "Drevený plot"; break;
+                case 'concrete': pricePerM2 = 65; materialName = "Betónový plot"; break;
+                case 'steel': pricePerM2 = 110; materialName = "Oceľový plot"; break;
+                case 'gabion': pricePerM2 = 130; materialName = "Gabión"; break;
             }
 
-            // 3. Výpočet
+            // Výpočet
             const area = length * height;
             const materialCost = area * pricePerM2;
 
@@ -321,17 +306,27 @@
 
             const total = materialCost + foundationCost;
 
-            // 4. Zobrazenie
-            const resultBox = document.getElementById('result');
-            const totalPriceElement = document.getElementById('totalPrice');
-
-            // Formátovanie na menu
+            // Aktualizácia ceny
             totalPriceElement.innerText = total.toLocaleString('sk-SK', { style: 'currency', currency: 'EUR' });
-            
-            resultBox.style.display = "block";
-            // Jemný scroll k výsledku
-            resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            // Aktualizácia detailov
+            let detailsHTML = `<strong>${materialName}:</strong> ${materialCost.toFixed(2)} €<br>`;
+            if (foundationCost > 0) {
+                detailsHTML += `<strong>Betónový základ:</strong> ${foundationCost.toFixed(2)} €`;
+            } else {
+                detailsHTML += `Bez základov`;
+            }
+            priceDetailsElement.innerHTML = detailsHTML;
         }
+
+        // 3. Reaktivita
+        inputs.forEach(input => {
+            input.addEventListener('input', calculateFence);
+            input.addEventListener('change', calculateFence);
+        });
+
+        // Spustenie na začiatku
+        calculateFence();
     </script>
 </body>
 </html>
