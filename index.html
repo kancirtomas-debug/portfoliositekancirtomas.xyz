@@ -309,13 +309,13 @@
             overflow: hidden;
         }
 
-        /* Hero Background - right side to edge */
+        /* Hero Background - right side to edge - OPRAVENÉ: zmenené z fixed na absolute */
         .hero-bg {
-            position: fixed;
+            position: absolute;
             top: 0;
             right: 0;
             width: 50vw;
-            height: 100vh;
+            height: 100%;
             overflow: hidden;
             z-index: 0;
         }
@@ -1867,34 +1867,6 @@
                 <h3>Čoskoro pribudnú projekty</h3>
                 <p>Pracujem na zaujímavých projektoch, ktoré tu čoskoro nájdeš.</p>
             </div>
-
-            <!-- Portfolio grid - odkomentuj keď budeš mať projekty
-            <div class="portfolio-grid">
-                <div class="portfolio-card reveal reveal-delay-1">
-                    <div class="portfolio-image">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop" alt="Názov projektu">
-                        <div class="portfolio-overlay">
-                            <a href="#" target="_blank" class="portfolio-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                    <polyline points="15 3 21 3 21 9"></polyline>
-                                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                                </svg>
-                                Zobraziť projekt
-                            </a>
-                        </div>
-                    </div>
-                    <div class="portfolio-content">
-                        <div class="portfolio-tags">
-                            <span class="portfolio-tag">Web Development</span>
-                            <span class="portfolio-tag">HTML/CSS</span>
-                        </div>
-                        <h3>Názov projektu</h3>
-                        <p>Krátky popis projektu - čo to je, pre koho som to robil, aké technológie som použil.</p>
-                    </div>
-                </div>
-            </div>
-            -->
         </div>
     </section>
 
@@ -2415,4 +2387,13 @@
         if (!localStorage.getItem('cookiesAccepted')) {
             setTimeout(() => {
                 document.getElementById('cookie-banner').style.transform = 'translateY(0)';
-            }, 2000); // Ukáže sa po 2
+            }, 2000);
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').style.transform = 'translateY(100%)';
+        }
+    </script>
+</body>
+</html>
