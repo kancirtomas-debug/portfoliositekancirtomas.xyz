@@ -89,14 +89,14 @@
             right: 0;
             z-index: 1000;
             padding: 1rem 2rem;
-            background: rgba(10, 10, 11, 0.8);
+            background: var(--gradient-1);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid transparent;
             transition: all 0.3s var(--transition-smooth);
         }
 
         nav.scrolled {
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             padding: 0.75rem 2rem;
         }
 
@@ -104,7 +104,7 @@
             max-width: 1400px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
         }
 
@@ -254,7 +254,7 @@
         }
 
         .nav-links a {
-            color: var(--text-secondary);
+            color: white;
             text-decoration: none;
             font-size: 0.95rem;
             font-weight: 500;
@@ -269,12 +269,12 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--gradient-1);
+            background: white;
             transition: width 0.3s var(--transition-smooth);
         }
 
         .nav-links a:hover {
-            color: var(--text-primary);
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .nav-links a:hover::after {
@@ -293,7 +293,7 @@
         .mobile-menu-btn span {
             width: 25px;
             height: 2px;
-            background: var(--text-primary);
+            background: white;
             transition: all 0.3s var(--transition-smooth);
         }
 
@@ -470,6 +470,96 @@
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.15);
             border-color: var(--accent);
+        }
+
+        /* ===== Instagram Reels Section ===== */
+        .instagram-reels {
+            padding: 6rem 2rem;
+            background: var(--bg-secondary);
+            position: relative;
+        }
+
+        .instagram-reels::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        }
+
+        .reels-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .reels-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .reels-header h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .reels-header p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
+        .reels-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .reel-wrapper {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.3s var(--transition-smooth);
+            position: relative;
+            aspect-ratio: 9/16;
+        }
+
+        .reel-wrapper:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        .reel-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 1024px) {
+            .reels-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .reels-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+
+            .instagram-reels {
+                padding: 4rem 1.5rem;
+            }
         }
 
 
@@ -1740,6 +1830,51 @@
                     </svg>
                     Rezervuj si stretnutie
                 </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Reels Section -->
+    <section class="instagram-reels">
+        <div class="reels-container">
+            <div class="reels-header reveal">
+                <h2>Moje Instagram Reels</h2>
+                <p>Sleduj moju cestu a každodenné aktivity</p>
+            </div>
+
+            <div class="reels-grid">
+                <div class="reel-wrapper reveal reveal-delay-1">
+                    <!-- Prvý reel - nahraď URL svojim Instagram reel linkom -->
+                    <iframe 
+                        src="https://www.instagram.com/reel/YOUR_REEL_ID/embed"
+                        frameborder="0"
+                        scrolling="no"
+                        allowtransparency="true"
+                        allow="encrypted-media">
+                    </iframe>
+                </div>
+
+                <div class="reel-wrapper reveal reveal-delay-2">
+                    <!-- Druhý reel - nahraď URL svojim Instagram reel linkom -->
+                    <iframe 
+                        src="https://www.instagram.com/reel/YOUR_REEL_ID/embed"
+                        frameborder="0"
+                        scrolling="no"
+                        allowtransparency="true"
+                        allow="encrypted-media">
+                    </iframe>
+                </div>
+
+                <div class="reel-wrapper reveal reveal-delay-3">
+                    <!-- Tretí reel - nahraď URL svojim Instagram reel linkom -->
+                    <iframe 
+                        src="https://www.instagram.com/reel/YOUR_REEL_ID/embed"
+                        frameborder="0"
+                        scrolling="no"
+                        allowtransparency="true"
+                        allow="encrypted-media">
+                    </iframe>
+                </div>
             </div>
         </div>
     </section>
