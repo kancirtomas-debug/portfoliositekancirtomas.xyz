@@ -89,13 +89,14 @@
             right: 0;
             z-index: 1000;
             padding: 1rem 2rem;
-            background: var(--gradient-1);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.7) 0%, rgba(139, 92, 246, 0.7) 50%, rgba(168, 85, 247, 0.7) 100%);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid transparent;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s var(--transition-smooth);
         }
 
         nav.scrolled {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.85) 0%, rgba(139, 92, 246, 0.85) 50%, rgba(168, 85, 247, 0.85) 100%);
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             padding: 0.75rem 2rem;
         }
@@ -472,95 +473,6 @@
             border-color: var(--accent);
         }
 
-        /* ===== Instagram Reels Section ===== */
-        .instagram-reels {
-            padding: 6rem 2rem;
-            background: var(--bg-secondary);
-            position: relative;
-        }
-
-        .instagram-reels::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border), transparent);
-        }
-
-        .reels-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .reels-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .reels-header h2 {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 800;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-
-        .reels-header p {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-        }
-
-        .reels-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .reel-wrapper {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            overflow: hidden;
-            transition: all 0.3s var(--transition-smooth);
-            position: relative;
-            aspect-ratio: 9/16;
-        }
-
-        .reel-wrapper:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent);
-            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.3);
-        }
-
-        .reel-wrapper iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        @media (max-width: 1024px) {
-            .reels-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 640px) {
-            .reels-grid {
-                grid-template-columns: 1fr;
-                max-width: 400px;
-            }
-
-            .instagram-reels {
-                padding: 4rem 1.5rem;
-            }
-        }
 
 
         /* ===== Process Section ===== */
@@ -1794,20 +1706,18 @@
     <section class="hero" id="hero">
         <div class="hero-bg">
             <div class="hero-image-overlay"></div>
-            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=1920&h=1080&fit=crop&crop=face" alt="Tomáš Kancír" class="hero-bg-image">
+            <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1920&h=1080&fit=crop" alt="Abstract Background" class="hero-bg-image">
         </div>
         
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="dot"></span>
-                Otvorený novým príležitostiam
+                Pripravený na spoluprácu
             </div>
             
             <h1>
                 <span class="gradient-text">Tomáš Kancír</span>
             </h1>
-            
-            <p class="hero-subtitle">Web Developer</p>
             
             <p class="hero-description">
                 Tvorím moderné a responzívne webstránky, ktoré pomáhajú biznisu rásť. Automatizujem procesy pomocou AI a zdieľam svoju cestu učenia na sociálnych sieťach.
@@ -1830,51 +1740,6 @@
                     </svg>
                     Rezervuj si stretnutie
                 </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Instagram Reels Section -->
-    <section class="instagram-reels">
-        <div class="reels-container">
-            <div class="reels-header reveal">
-                <h2>Moje Instagram Reels</h2>
-                <p>Sleduj moju cestu a každodenné aktivity</p>
-            </div>
-
-            <div class="reels-grid">
-                <div class="reel-wrapper reveal reveal-delay-1">
-                    <!-- Prvý reel - nahraď URL svojim Instagram reel linkom -->
-                    <iframe 
-                        src="https://www.instagram.com/reel/YOUR_REEL_ID/embed"
-                        frameborder="0"
-                        scrolling="no"
-                        allowtransparency="true"
-                        allow="encrypted-media">
-                    </iframe>
-                </div>
-
-                <div class="reel-wrapper reveal reveal-delay-2">
-                    <!-- Druhý reel - nahraď URL svojim Instagram reel linkom -->
-                    <iframe 
-                        src="https://www.instagram.com/reel/YOUR_REEL_ID/embed"
-                        frameborder="0"
-                        scrolling="no"
-                        allowtransparency="true"
-                        allow="encrypted-media">
-                    </iframe>
-                </div>
-
-                <div class="reel-wrapper reveal reveal-delay-3">
-                    <!-- Tretí reel - nahraď URL svojim Instagram reel linkom -->
-                    <iframe 
-                        src="https://www.instagram.com/reel/YOUR_REEL_ID/embed"
-                        frameborder="0"
-                        scrolling="no"
-                        allowtransparency="true"
-                        allow="encrypted-media">
-                    </iframe>
-                </div>
             </div>
         </div>
     </section>
