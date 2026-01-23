@@ -164,68 +164,68 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             position: relative;
-            padding: 6rem 4rem 4rem;
+            padding: 6rem 4rem 0;
             overflow: hidden;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 2rem;
         }
 
-        /* Hero Background - right side to edge */
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50vw;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-        }
-
-        .hero-bg-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center top;
-            filter: grayscale(20%);
-            transform: scale(1.05);
-            transition: transform 8s ease-out, filter 0.5s ease;
-        }
-
-        .hero:hover .hero-bg-image {
-            transform: scale(1);
-            filter: grayscale(0%);
-        }
-
-        .hero-image-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to right,
-                rgba(10, 10, 11, 1) 0%,
-                rgba(10, 10, 11, 0.85) 25%,
-                rgba(10, 10, 11, 0.4) 60%,
-                rgba(10, 10, 11, 0.2) 100%
-            );
+        /* Hero Photo - right side */
+        .hero-photo-container {
+            position: relative;
+            flex: 0 0 auto;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
             z-index: 1;
+        }
+
+        .hero-photo {
+            max-height: 85vh;
+            width: auto;
+            max-width: 500px;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 60px rgba(99, 102, 241, 0.3));
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        .hero-photo:hover {
+            transform: scale(1.02);
+            filter: drop-shadow(0 25px 80px rgba(99, 102, 241, 0.4));
+        }
+
+        /* Gradient glow behind photo */
+        .hero-photo-glow {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120%;
+            height: 70%;
+            background: radial-gradient(ellipse at center bottom, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
             text-align: left;
-            max-width: 1400px;
-            width: 100%;
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            padding-left: 2rem;
+            padding-bottom: 4rem;
         }
 
         .hero-content .hero-badge,
         .hero-content h1,
         .hero-content .hero-description,
         .hero-content .hero-buttons {
-            max-width: 600px;
+            max-width: 550px;
         }
 
         .hero-badge {
@@ -1402,28 +1402,29 @@
         /* ===== Responsive ===== */
         @media (max-width: 1024px) {
             .hero {
-                padding: 6rem 2rem 4rem;
-            }
-
-            .hero-bg {
-                width: 100vw;
-                left: 0;
-                right: 0;
+                flex-direction: column;
+                padding: 6rem 2rem 2rem;
+                text-align: center;
+                gap: 2rem;
             }
 
             .hero-content {
-                max-width: 100%;
-                text-align: center;
-                padding-left: 0;
                 align-items: center;
-            }
-
-            .hero-description {
-                margin: 0 auto 3rem;
+                text-align: center;
+                padding-bottom: 0;
             }
 
             .hero-buttons {
                 justify-content: center;
+            }
+
+            .hero-photo-container {
+                order: -1;
+            }
+
+            .hero-photo {
+                max-height: 50vh;
+                max-width: 350px;
             }
 
             .about-grid {
@@ -1475,12 +1476,21 @@
                 transform: rotate(-45deg) translate(5px, -5px);
             }
 
+            .hero {
+                padding: 5rem 1.5rem 2rem;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
 
             .hero-description {
                 font-size: 1.1rem;
+            }
+
+            .hero-photo {
+                max-height: 45vh;
+                max-width: 280px;
             }
 
             .about-stats {
@@ -1500,7 +1510,12 @@
 
         @media (max-width: 480px) {
             .hero {
-                padding: 5rem 1rem 3rem;
+                padding: 5rem 1rem 2rem;
+            }
+
+            .hero-photo {
+                max-height: 40vh;
+                max-width: 240px;
             }
 
             .section-title {
@@ -1547,11 +1562,6 @@
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
-        <div class="hero-bg">
-            <div class="hero-image-overlay"></div>
-            <img src="hero-photo.jpg" alt="Tomáš Kancír" class="hero-bg-image">
-        </div>
-        
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="dot"></span>
@@ -1584,6 +1594,11 @@
                     Rezervuj si stretnutie
                 </button>
             </div>
+        </div>
+
+        <div class="hero-photo-container">
+            <div class="hero-photo-glow"></div>
+            <img src="hero-photo.png" alt="Tomáš Kancír" class="hero-photo">
         </div>
     </section>
 
