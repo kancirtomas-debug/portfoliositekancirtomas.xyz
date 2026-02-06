@@ -892,6 +892,103 @@
             filter: brightness(0) invert(1);
         }
 
+        /* Portfolio Calculator Grid */
+        .portfolio-calculators-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .portfolio-calc-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s var(--transition-smooth);
+            text-align: center;
+            min-height: 200px;
+            position: relative;
+        }
+
+        .portfolio-calc-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        .portfolio-calc-card.portfolio-calc-main {
+            grid-column: span 3;
+            background: var(--gradient-1);
+            border: none;
+            min-height: 180px;
+        }
+
+        .portfolio-calc-card.portfolio-calc-main:hover {
+            box-shadow: 0 15px 40px var(--accent-glow);
+        }
+
+        .calc-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-calc-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-calc-card.portfolio-calc-main h3 {
+            font-size: 1.4rem;
+        }
+
+        .portfolio-calc-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .portfolio-calc-card.portfolio-calc-main p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .calc-card-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 900px) {
+            .portfolio-calculators-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .portfolio-calc-card.portfolio-calc-main {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .portfolio-calculators-grid {
+                grid-template-columns: 1fr;
+            }
+            .portfolio-calc-card.portfolio-calc-main {
+                grid-column: span 1;
+            }
+        }
+
         /* Minero.sk partnership v portfolio */
         .minero-partnership {
             display: flex;
@@ -1877,18 +1974,51 @@
                 <h2 class="section-title">Moja tvorba</h2>
             </div>
 
-            <!-- Portfolio layout - tlačidlo vľavo, text vpravo -->
-            <div class="portfolio-showcase reveal reveal-delay-1">
-                <a href="kalkulacka-fotovoltiky.html" class="portfolio-main-btn">
-                    <img width="80" height="80" src="https://img.icons8.com/ios-filled/80/FFFFFF/apple-calculator.png" alt="Kalkulačka" class="calc-icon">
-                    <span>Kalkulačka na fotovoltiku</span>
+            <!-- Fotovoltaické Kalkulačky Grid -->
+            <div class="portfolio-calculators-grid reveal reveal-delay-1">
+                <a href="kalkulacky-fotovoltika.html" class="portfolio-calc-card portfolio-calc-main">
+                    <div class="calc-card-icon">☀️</div>
+                    <h3>Fotovoltaické Kalkulačky</h3>
+                    <p>Kompletný balík všetkých kalkulačiek pre solárne panely</p>
+                    <span class="calc-card-badge">Odporúčané</span>
                 </a>
                 
-                <div class="portfolio-coming-soon">
-                    <div class="portfolio-coming-icon">🚀</div>
-                    <h3>Čoskoro pribudnú projekty</h3>
-                    <p>Pracujem na zaujímavých projektoch, ktoré tu čoskoro nájdeš.</p>
-                </div>
+                <a href="kalkulacka-navratnost.html" class="portfolio-calc-card">
+                    <div class="calc-card-icon">📊</div>
+                    <h3>Základná Návratnosť</h3>
+                    <p>Jednoduchý výpočet ROI pre fotovoltiku</p>
+                </a>
+                
+                <a href="kalkulacka-navratnost-bateria.html" class="portfolio-calc-card">
+                    <div class="calc-card-icon">🔋</div>
+                    <h3>S Batériou</h3>
+                    <p>Kalkulácia s domácim úložiskom energie</p>
+                </a>
+                
+                <a href="kalkulacka-navratnost-asic.html" class="portfolio-calc-card">
+                    <div class="calc-card-icon">⛏️</div>
+                    <h3>S ASIC Minerom</h3>
+                    <p>Využitie prebytkov na ťažbu kryptomien</p>
+                </a>
+                
+                <a href="kalkulacka-baterka-miner.html" class="portfolio-calc-card">
+                    <div class="calc-card-icon">🔋⛏️</div>
+                    <h3>Batéria + Miner</h3>
+                    <p>Kombinácia batérie a ASIC minera</p>
+                </a>
+                
+                <a href="kalkulacka-kompletna-dotacie.html" class="portfolio-calc-card">
+                    <div class="calc-card-icon">💰</div>
+                    <h3>Kompletná + Dotácie</h3>
+                    <p>Všetky možnosti vrátane štátnych dotácií</p>
+                </a>
+            </div>
+            
+            <!-- Coming Soon -->
+            <div class="portfolio-coming-soon reveal reveal-delay-2">
+                <div class="portfolio-coming-icon">🚀</div>
+                <h3>Čoskoro pribudnú ďalšie projekty</h3>
+                <p>Pracujem na zaujímavých projektoch, ktoré tu čoskoro nájdeš.</p>
             </div>
 
             <!-- Minero.sk spolupráca -->
@@ -2058,7 +2188,7 @@
                             </div>
                             <div class="contact-method-text">
                                 <span>Email</span>
-                                <a href="mailto:kancir.tomas@gmail.com">kancir.tomas@gmail.com</a>
+                                <a href="/cdn-cgi/l/email-protection#781319161b110a560c1715190b381f15191114561b1715"><span class="__cf_email__" data-cfemail="c7aca6a9a4aeb5e9b3a8aaa6b487a0aaa6aeabe9a4a8aa">[email&#160;protected]</span></a>
                             </div>
                         </div>
 
@@ -2186,7 +2316,7 @@
     </div>
 
     <!-- Cal.com Script -->
-    <script type="text/javascript">
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript">
         (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
         Cal("init", "stretko-s-tomasom", {origin:"https://app.cal.com"});
         Cal.ns["stretko-s-tomasom"]("inline", {
@@ -2416,14 +2546,3 @@
         if (!localStorage.getItem('cookiesAccepted')) {
             setTimeout(() => {
                 document.getElementById('cookie-banner').style.transform = 'translateY(0)';
-            }, 2000);
-        }
-
-        function acceptCookies() {
-            localStorage.setItem('cookiesAccepted', 'true');
-            document.getElementById('cookie-banner').style.transform = 'translateY(100%)';
-        }
-    </script>
-</body>
-</html>
-
