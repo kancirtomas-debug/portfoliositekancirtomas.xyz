@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tomáš Kancír - Profesionálny mobilný masér. Relaxujte v pohodlí vášho domova.">
+    <title>Tomáš Kancír - Mobilný Masér</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Fade-in animácie */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Hover efekty */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(216, 180, 254, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-white text-black">
+
+    <!-- Navigácia -->
+    <nav class="fixed top-0 w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-spa text-2xl" style="color: #D8B4FE;"></i>
+                    <span class="text-xl font-bold">Tomáš Kancír</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="#domov" class="hover:text-purple-400 transition">Domov</a>
+                    <a href="#omne" class="hover:text-purple-400 transition">O mne</a>
+                    <a href="#sluzby" class="hover:text-purple-400 transition">Služby</a>
+                    <a href="#cennik" class="hover:text-purple-400 transition">Cenník</a>
+                    <a href="#vzdelanie" class="hover:text-purple-400 transition">Vzdelanie</a>
+                    <a href="#recenzie" class="hover:text-purple-400 transition">Recenzie</a>
+                    <a href="#kontakt" class="hover:text-purple-400 transition">Kontakt</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-2">
+                <a href="#domov" class="block py-2 hover:text-purple-400 transition">Domov</a>
+                <a href="#omne" class="block py-2 hover:text-purple-400 transition">O mne</a>
+                <a href="#sluzby" class="block py-2 hover:text-purple-400 transition">Služby</a>
+                <a href="#cennik" class="block py-2 hover:text-purple-400 transition">Cenník</a>
+                <a href="#vzdelanie" class="block py-2 hover:text-purple-400 transition">Vzdelanie</a>
+                <a href="#recenzie" class="block py-2 hover:text-purple-400 transition">Recenzie</a>
+                <a href="#kontakt" class="block py-2 hover:text-purple-400 transition">Kontakt</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Sekcia -->
+    <section id="domov" class="pt-24 pb-16 px-4" style="background: linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%);">
+        <div class="container mx-auto text-center fade-in">
+            <!-- NAHRAĎ TOTO: Miesto pre hero fotografiu -->
+            <div class="mb-8 flex justify-center">
+                <div class="w-48 h-48 rounded-full bg-white flex items-center justify-center shadow-lg">
+                    <i class="fas fa-user text-6xl" style="color: #D8B4FE;"></i>
+                </div>
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Tomáš Kancír</h1>
+            <h2 class="text-2xl md:text-3xl mb-6" style="color: #D8B4FE;">Mobilný Masér</h2>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-gray-700">
+                Relaxujte v pohodlí vášho domova. Profesionálne masáže na mieru vašim potrebám, 
+                priamo u vás doma alebo v kancelárii.
+            </p>
+            
+            <a href="#kontakt" class="inline-block px-8 py-4 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition transform hover:scale-105" style="background-color: #D8B4FE;">
+                Objednať sa
+            </a>
+        </div>
+    </section>
+
+    <!-- O mne -->
+    <section id="omne" class="py-16 px-4">
+        <div class="container mx-auto max-w-4xl fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">O mne</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <!-- NAHRAĎ TOTO: Fotka maséra -->
+                <div class="flex justify-center">
+                    <div class="w-full max-w-md h-96 bg-gray-200 rounded-lg shadow-lg flex items-center justify-center">
+                        <i class="fas fa-camera text-6xl text-gray-400"></i>
+                    </div>
+                </div>
+                
+                <div>
+                    <p class="text-lg mb-4 leading-relaxed">
+                        Vitajte! Som Tomáš Kancír, certifikovaný masér s vášňou pre starostlivosť o ľudské telo a duševnú pohodu.
+                    </p>
+                    <p class="text-lg mb-4 leading-relaxed">
+                        Venujem sa masážam už niekoľko rokov a neustále vzdelávam v najnovších technikách a trendoch. 
+                        Moja filozofia je jednoduchá - každý klient je jedinečný a zaslúži si individuálny prístup.
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        Ako mobilný masér vám prinášam relaxáciu priamo do vášho domova. Nemusíte sa nikam ponáhľať, 
+                        len sa pohodlne usaďte a nechajte ma postarať sa o vašu regeneráciu.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Služby -->
+    <section id="sluzby" class="py-16 px-4" style="background-color: #F9FAFB;">
+        <div class="container mx-auto fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Moje Služby</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Služba 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover-lift">
+                    <div class="text-4xl mb-4 text-center" style="color: #D8B4FE;">
+                        <i class="fas fa-hands"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">Klasická masáž</h3>
+                    <p class="text-gray-600 text-center">
+                        Tradičné masážne techniky pre celkové uvoľnenie svalov a odstránenie napätia.
+                    </p>
+                </div>
+                
+                <!-- Služba 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover-lift">
+                    <div class="text-4xl mb-4 text-center" style="color: #D8B4FE;">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">Športová masáž</h3>
+                    <p class="text-gray-600 text-center">
+                        Intenzívna masáž zameraná na športovcov a aktívnych ľudí pre rýchlejšiu regeneráciu.
+                    </p>
+                </div>
+                
+                <!-- Služba 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover-lift">
+                    <div class="text-4xl mb-4 text-center" style="color: #D8B4FE;">
+                        <i class="fas fa-feather"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">Mäkké techniky</h3>
+                    <p class="text-gray-600 text-center">
+                        Jemné a relaxačné techniky pre maximálny odpočinok a harmonizáciu tela.
+                    </p>
+                </div>
+                
+                <!-- Služba 4 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover-lift">
+                    <div class="text-4xl mb-4 text-center" style="color: #D8B4FE;">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">Banková masáž</h3>
+                    <p class="text-gray-600 text-center">
+                        Detoxikácia a zlepšenie prekrvenia pomocou tradičnej techniky bankovania.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cenník -->
+    <section id="cennik" class="py-16 px-4">
+        <div class="container mx-auto fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Cenník</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <!-- Balík 1 -->
+                <div class="bg-white border-2 border-gray-200 rounded-lg p-8 hover-lift">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-4">60 minút</h3>
+                        <div class="text-5xl font-bold mb-4" style="color: #D8B4FE;">40€</div>
+                        <p class="text-gray-600 mb-6">Ideálne pre rýchlu regeneráciu</p>
+                        <ul class="text-left space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Váš text sem</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Váš text sem</span>
+                            </li>
+                        </ul>
+                        <a href="#kontakt" class="block w-full py-3 text-center text-white rounded-lg font-semibold hover:opacity-90 transition" style="background-color: #D8B4FE;">
+                            Objednať
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Balík 2 - Populárny -->
+                <div class="bg-white border-4 rounded-lg p-8 hover-lift relative" style="border-color: #D8B4FE;">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-1 rounded-full text-white text-sm font-semibold" style="background-color: #D8B4FE;">
+                        NAJPOPULÁRNEJŠIE
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-4">90 minút</h3>
+                        <div class="text-5xl font-bold mb-4" style="color: #D8B4FE;">55€</div>
+                        <p class="text-gray-600 mb-6">Optimálna doba pre komplexnú masáž</p>
+                        <ul class="text-left space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Váš text sem</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Váš text sem</span>
+                            </li>
+                        </ul>
+                        <a href="#kontakt" class="block w-full py-3 text-center text-white rounded-lg font-semibold hover:opacity-90 transition" style="background-color: #D8B4FE;">
+                            Objednať
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Balík 3 -->
+                <div class="bg-white border-2 border-gray-200 rounded-lg p-8 hover-lift">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-4">120 minút</h3>
+                        <div class="text-5xl font-bold mb-4" style="color: #D8B4FE;">80€</div>
+                        <p class="text-gray-600 mb-6">Luxusný relax na celé telo</p>
+                        <ul class="text-left space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Váš text sem</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Váš text sem</span>
+                            </li>
+                        </ul>
+                        <a href="#kontakt" class="block w-full py-3 text-center text-white rounded-lg font-semibold hover:opacity-90 transition" style="background-color: #D8B4FE;">
+                            Objednať
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vzdelanie -->
+    <section id="vzdelanie" class="py-16 px-4" style="background-color: #F9FAFB;">
+        <div class="container mx-auto fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Vzdelanie & Certifikáty</h2>
+            
+            <div class="max-w-5xl mx-auto space-y-6">
+                <!-- Prvý certifikát - sám na riadku -->
+                <div class="flex justify-center">
+                    <!-- NAHRAĎ TOTO: Certifikát 1 -->
+                    <div class="w-full max-w-md h-64 bg-white rounded-lg shadow-md flex items-center justify-center hover-lift">
+                        <div class="text-center">
+                            <i class="fas fa-certificate text-6xl mb-4" style="color: #D8B4FE;"></i>
+                            <p class="text-gray-500">Certifikát 1</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Druhý riadok - 3 certifikáty -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- NAHRAĎ TOTO: Certifikáty 2-4 -->
+                    <div class="h-64 bg-white rounded-lg shadow-md flex items-center justify-center hover-lift">
+                        <div class="text-center">
+                            <i class="fas fa-certificate text-6xl mb-4" style="color: #D8B4FE;"></i>
+                            <p class="text-gray-500">Certifikát 2</p>
+                        </div>
+                    </div>
+                    <div class="h-64 bg-white rounded-lg shadow-md flex items-center justify-center hover-lift">
+                        <div class="text-center">
+                            <i class="fas fa-certificate text-6xl mb-4" style="color: #D8B4FE;"></i>
+                            <p class="text-gray-500">Certifikát 3</p>
+                        </div>
+                    </div>
+                    <div class="h-64 bg-white rounded-lg shadow-md flex items-center justify-center hover-lift">
+                        <div class="text-center">
+                            <i class="fas fa-certificate text-6xl mb-4" style="color: #D8B4FE;"></i>
+                            <p class="text-gray-500">Certifikát 4</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tretí riadok - 3 certifikáty -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- NAHRAĎ TOTO: Certifikáty 5-7 -->
+                    <div class="h-64 bg-white rounded-lg shadow-md flex items-center justify-center hover-lift">
+                        <div class="text-center">
+                            <i class="fas fa-certificate text-6xl mb-4" style="color: #D8B4FE;"></i>
+                            <p class="text-gray-500">Certifikát 5</p>
+                        </div>
+                    </div>
+                    <div class="h-64 bg-white rounded-lg shadow-md flex items-center justify-center hover-lift">
+                        <div class="text-center">
+                            <i class="fas fa-certificate text-6xl mb-4" style="color: #D8B4FE;"></i>
+                            <p class="text-gray-500">Certifikát 6</p>
+                        </div>
+                    </div>
+                    <div class="h-64 bg-white rounded-lg shadow-md flex items-center justify-center hover-lift">
+                        <div class="text-center">
+                            <i class="fas fa-certificate text-6xl mb-4" style="color: #D8B4FE;"></i>
+                            <p class="text-gray-500">Certifikát 7</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recenzie -->
+    <section id="recenzie" class="py-16 px-4">
+        <div class="container mx-auto fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Čo hovoria klienti</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <!-- Recenzia 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover-lift">
+                    <div class="flex mb-4" style="color: #D8B4FE;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 mb-4 italic">
+                        "Tomáš je profesionál! Masáž priamo u mňa doma bola luxus. Cítim sa ako znovuzrodený."
+                    </p>
+                    <p class="font-semibold">- Marián K.</p>
+                </div>
+                
+                <!-- Recenzia 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover-lift">
+                    <div class="flex mb-4" style="color: #D8B4FE;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 mb-4 italic">
+                        "Konečne som našla maséra, ktorý rozumie mojim problémom. Športová masáž top!"
+                    </p>
+                    <p class="font-semibold">- Jana S.</p>
+                </div>
+                
+                <!-- Recenzia 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover-lift">
+                    <div class="flex mb-4" style="color: #D8B4FE;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 mb-4 italic">
+                        "Príjemný, profesionálny a hlavne efektívny. Po masáži som mal pocit úľavy okamžite."
+                    </p>
+                    <p class="font-semibold">- Peter D.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section id="kontakt" class="py-16 px-4" style="background-color: #F9FAFB;">
+        <div class="container mx-auto max-w-6xl fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Kontakt a Rezervácia</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Kontaktný formulár -->
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-semibold mb-6">Napíšte mi</h3>
+                    <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+                        <!-- NAHRAĎ TENTO ACCESS KEY: Získaj vlastný na https://web3forms.com -->
+                        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                        <input type="hidden" name="subject" value="Nová objednávka z webu">
+                        
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Meno *</label>
+                                <input type="text" name="meno" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2" style="focus:ring-color: #D8B4FE;">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Priezvisko *</label>
+                                <input type="text" name="priezvisko" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2" style="focus:ring-color: #D8B4FE;">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Mesto *</label>
+                            <input type="text" name="mesto" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2" style="focus:ring-color: #D8B4FE;">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Email *</label>
+                            <input type="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2" style="focus:ring-color: #D8B4FE;">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Tel. číslo *</label>
+                            <input type="tel" name="telefon" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2" style="focus:ring-color: #D8B4FE;">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Zdravotný stav *</label>
+                            <p class="text-xs text-gray-500 mb-2">
+                                Uveďte prosím dlhodobé diagnózy, ochorenia, problémy s tlakom (nízky/vysoký), 
+                                aby bola masáž prispôsobená presne pre vás.
+                            </p>
+                            <textarea name="zdravotny_stav" rows="6" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2" style="focus:ring-color: #D8B4FE;"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full py-3 text-white font-semibold rounded-lg hover:opacity-90 transition" style="background-color: #D8B4FE;">
+                            Odoslať správu
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Online rezervácia + Info -->
+                <div class="space-y-6">
+                    <!-- Cal.com rezervácia -->
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-semibold mb-4">Online rezervácia</h3>
+                        <p class="text-gray-700 mb-6">
+                            Vyberte si presný dátum a čas, ktorý vám vyhovuje.
+                        </p>
+                        <a href="https://cal.com/kanto/wellness-masaz" target="_blank" class="block w-full py-4 text-center text-white font-semibold rounded-lg hover:opacity-90 transition" style="background-color: #D8B4FE;">
+                            <i class="fas fa-calendar-check mr-2"></i>
+                            Rezervovať presný termín online
+                        </a>
+                    </div>
+                    
+                    <!-- Kontaktné info -->
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-semibold mb-4">Priamy kontakt</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-phone text-2xl mr-4" style="color: #D8B4FE;"></i>
+                                <div>
+                                    <p class="font-medium">Telefón</p>
+                                    <a href="tel:+421XXXXXXXXX" class="text-gray-700 hover:text-purple-400">+421 XXX XXX XXX</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-2xl mr-4" style="color: #D8B4FE;"></i>
+                                <div>
+                                    <p class="font-medium">Email</p>
+                                    <a href="mailto:info@tomaskancir.sk" class="text-gray-700 hover:text-purple-400">info@tomaskancir.sk</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-2xl mr-4" style="color: #D8B4FE;"></i>
+                                <div>
+                                    <p class="font-medium">Pôsobnosť</p>
+                                    <p class="text-gray-700">Bratislava a okolie</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 text-white" style="background-color: #1F2937;">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <!-- O firme -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Tomáš Kancír</h4>
+                    <p class="text-gray-300">Profesionálne masáže priamo k vám domov.</p>
+                </div>
+                
+                <!-- Rýchle linky -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Rýchle linky</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#domov" class="text-gray-300 hover:text-purple-400 transition">Domov</a></li>
+                        <li><a href="#sluzby" class="text-gray-300 hover:text-purple-400 transition">Služby</a></li>
+                        <li><a href="#cennik" class="text-gray-300 hover:text-purple-400 transition">Cenník</a></li>
+                        <li><a href="#kontakt" class="text-gray-300 hover:text-purple-400 transition">Kontakt</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Sociálne siete -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Sledujte ma</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl hover:text-purple-400 transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-2xl hover:text-purple-400 transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-2xl hover:text-purple-400 transition"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-6 text-center">
+                <p class="text-gray-300">&copy; 2024 Tomáš Kancír - Mobilný Masér. Všetky práva vyhradené.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Zavrieť menu po kliknutí na link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Fade-in animácie pri scrollovaní
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Sleduj všetky fade-in elementy
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
