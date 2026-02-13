@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cenník masáží - 60, 90 a 120 minútové balíky. Tomáš Kancír - Mobilný Masér.">
+    <title>Cenník | Tomáš Kancír - Mobilný Masér</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        html { scroll-behavior: smooth; }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(216, 180, 254, 0.3); }
+    </style>
+</head>
+<body class="bg-white text-black">
+
+    <!-- Navigácia -->
+    <nav class="fixed top-0 w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="flex items-center space-x-2">
+                    <i class="fas fa-spa text-2xl" style="color: #D8B4FE;"></i>
+                    <span class="text-xl font-bold">Tomáš Kancír</span>
+                </a>
+
+                <div class="hidden md:flex space-x-6">
+                    <a href="/" class="hover:text-purple-400 transition">Domov</a>
+                    <a href="/omne" class="hover:text-purple-400 transition">O mne</a>
+                    <a href="/sluzby" class="hover:text-purple-400 transition">Služby</a>
+                    <a href="/cennik" class="hover:text-purple-400 transition font-semibold" style="color: #D8B4FE;">Cenník</a>
+                    <a href="/vzdelanie" class="hover:text-purple-400 transition">Vzdelanie</a>
+                    <a href="/recenzie" class="hover:text-purple-400 transition">Recenzie</a>
+                    <a href="/kontakt" class="hover:text-purple-400 transition">Kontakt</a>
+                </div>
+
+                <button id="mobileMenuBtn" class="md:hidden text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-2">
+                <a href="/" class="block py-2 hover:text-purple-400 transition">Domov</a>
+                <a href="/omne" class="block py-2 hover:text-purple-400 transition">O mne</a>
+                <a href="/sluzby" class="block py-2 hover:text-purple-400 transition">Služby</a>
+                <a href="/cennik" class="block py-2 hover:text-purple-400 transition">Cenník</a>
+                <a href="/vzdelanie" class="block py-2 hover:text-purple-400 transition">Vzdelanie</a>
+                <a href="/recenzie" class="block py-2 hover:text-purple-400 transition">Recenzie</a>
+                <a href="/kontakt" class="block py-2 hover:text-purple-400 transition">Kontakt</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero banner -->
+    <section class="pt-24 pb-12 px-4" style="background: linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%);">
+        <div class="container mx-auto text-center fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Cenník</h1>
+            <p class="text-lg text-gray-700">Transparentné ceny bez skrytých poplatkov</p>
+        </div>
+    </section>
+
+    <!-- Cenník -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto fade-in">
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <!-- Balík 1 -->
+                <div class="bg-white border-2 border-gray-200 rounded-lg p-8 hover-lift">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-4">60 minút</h3>
+                        <div class="text-5xl font-bold mb-4" style="color: #D8B4FE;">40€</div>
+                        <p class="text-gray-600 mb-6">Ideálne pre rýchlu regeneráciu</p>
+                        <ul class="text-left space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Klasická alebo športová masáž</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Masáž priamo u vás doma</span>
+                            </li>
+                        </ul>
+                        <a href="https://cal.com/kanto/wellness-masaz" target="_blank" class="block w-full py-3 text-center text-white rounded-lg font-semibold hover:opacity-90 transition" style="background-color: #D8B4FE;">
+                            Objednať
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Balík 2 - Populárny -->
+                <div class="bg-white border-4 rounded-lg p-8 hover-lift relative" style="border-color: #D8B4FE;">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-1 rounded-full text-white text-sm font-semibold" style="background-color: #D8B4FE;">
+                        NAJPOPULÁRNEJŠIE
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-4">90 minút</h3>
+                        <div class="text-5xl font-bold mb-4" style="color: #D8B4FE;">55€</div>
+                        <p class="text-gray-600 mb-6">Optimálna doba pre komplexnú masáž</p>
+                        <ul class="text-left space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Klasická alebo športová masáž</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Masáž priamo u vás doma</span>
+                            </li>
+                        </ul>
+                        <a href="https://cal.com/kanto/wellness-masaz" target="_blank" class="block w-full py-3 text-center text-white rounded-lg font-semibold hover:opacity-90 transition" style="background-color: #D8B4FE;">
+                            Objednať
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Balík 3 -->
+                <div class="bg-white border-2 border-gray-200 rounded-lg p-8 hover-lift">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-4">120 minút</h3>
+                        <div class="text-5xl font-bold mb-4" style="color: #D8B4FE;">80€</div>
+                        <p class="text-gray-600 mb-6">Luxusný relax na celé telo</p>
+                        <ul class="text-left space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Klasická alebo športová masáž</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Masáž priamo u vás doma</span>
+                            </li>
+                        </ul>
+                        <a href="https://cal.com/kanto/wellness-masaz" target="_blank" class="block w-full py-3 text-center text-white rounded-lg font-semibold hover:opacity-90 transition" style="background-color: #D8B4FE;">
+                            Objednať
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 text-white" style="background-color: #1F2937;">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Tomáš Kancír</h4>
+                    <p class="text-gray-300">Profesionálne masáže priamo u vás doma.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Rýchle linky</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="text-gray-300 hover:text-purple-400 transition">Domov</a></li>
+                        <li><a href="/sluzby" class="text-gray-300 hover:text-purple-400 transition">Služby</a></li>
+                        <li><a href="/cennik" class="text-gray-300 hover:text-purple-400 transition">Cenník</a></li>
+                        <li><a href="/kontakt" class="text-gray-300 hover:text-purple-400 transition">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Sledujte ma</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl hover:text-purple-400 transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-2xl hover:text-purple-400 transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-2xl hover:text-purple-400 transition"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-6 text-center">
+                <p class="text-gray-300">&copy; 2026 Tomáš Kancír - Mobilný Masér. Všetky práva vyhradené.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
+        }, observerOptions);
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
