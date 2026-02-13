@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vzdelanie a certifikáty - Tomáš Kancír, certifikovaný mobilný masér.">
+    <title>Vzdelanie | Tomáš Kancír - Mobilný Masér</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        html { scroll-behavior: smooth; }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(216, 180, 254, 0.3); }
+        .lightbox { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.9); overflow: auto; }
+        .lightbox.active { display: flex; align-items: center; justify-content: center; animation: fadeIn 0.3s; }
+        .lightbox-content { max-width: 90%; max-height: 90vh; margin: auto; display: block; animation: zoomIn 0.3s; }
+        .lightbox-close { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .lightbox-close:hover { color: #D8B4FE; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes zoomIn { from { transform: scale(0.7); } to { transform: scale(1); } }
+        .certificate-img { cursor: pointer; transition: opacity 0.3s ease; }
+        .certificate-img:hover { opacity: 0.9; }
+    </style>
+</head>
+<body class="bg-white text-black">
+
+    <!-- Navigácia -->
+    <nav class="fixed top-0 w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="flex items-center space-x-2">
+                    <i class="fas fa-spa text-2xl" style="color: #D8B4FE;"></i>
+                    <span class="text-xl font-bold">Tomáš Kancír</span>
+                </a>
+
+                <div class="hidden md:flex space-x-6">
+                    <a href="/" class="hover:text-purple-400 transition">Domov</a>
+                    <a href="/omne" class="hover:text-purple-400 transition">O mne</a>
+                    <a href="/sluzby" class="hover:text-purple-400 transition">Služby</a>
+                    <a href="/cennik" class="hover:text-purple-400 transition">Cenník</a>
+                    <a href="/vzdelanie" class="hover:text-purple-400 transition font-semibold" style="color: #D8B4FE;">Vzdelanie</a>
+                    <a href="/recenzie" class="hover:text-purple-400 transition">Recenzie</a>
+                    <a href="/kontakt" class="hover:text-purple-400 transition">Kontakt</a>
+                </div>
+
+                <button id="mobileMenuBtn" class="md:hidden text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-2">
+                <a href="/" class="block py-2 hover:text-purple-400 transition">Domov</a>
+                <a href="/omne" class="block py-2 hover:text-purple-400 transition">O mne</a>
+                <a href="/sluzby" class="block py-2 hover:text-purple-400 transition">Služby</a>
+                <a href="/cennik" class="block py-2 hover:text-purple-400 transition">Cenník</a>
+                <a href="/vzdelanie" class="block py-2 hover:text-purple-400 transition">Vzdelanie</a>
+                <a href="/recenzie" class="block py-2 hover:text-purple-400 transition">Recenzie</a>
+                <a href="/kontakt" class="block py-2 hover:text-purple-400 transition">Kontakt</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero banner -->
+    <section class="pt-24 pb-12 px-4" style="background: linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%);">
+        <div class="container mx-auto text-center fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Vzdelanie & Certifikáty</h1>
+            <p class="text-lg text-gray-700">Neustále sa vzdelávam pre vaše zdravie</p>
+        </div>
+    </section>
+
+    <!-- Certifikáty -->
+    <section class="py-16 px-4" style="background-color: #F9FAFB;">
+        <div class="container mx-auto fade-in">
+            <div class="max-w-6xl mx-auto space-y-8">
+                <!-- Prvý certifikát -->
+                <div class="flex justify-center">
+                    <div class="w-full max-w-2xl bg-white rounded-lg shadow-md overflow-hidden hover-lift p-4">
+                        <img src="https://kancirtomas.xyz/certifikat1.webp"
+                             alt="Certifikát 1"
+                             class="w-full h-auto object-contain certificate-img"
+                             onclick="openLightbox(this.src)">
+                    </div>
+                </div>
+
+                <!-- Druhý riadok -->
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover-lift p-4">
+                        <img src="https://kancirtomas.xyz/certifikat2.webp" alt="Certifikát 2" class="w-full h-auto object-contain certificate-img" onclick="openLightbox(this.src)">
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover-lift p-4">
+                        <img src="https://kancirtomas.xyz/certifikat3.webp" alt="Certifikát 3" class="w-full h-auto object-contain certificate-img" onclick="openLightbox(this.src)">
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover-lift p-4">
+                        <img src="https://kancirtomas.xyz/certifikat4.webp" alt="Certifikát 4" class="w-full h-auto object-contain certificate-img" onclick="openLightbox(this.src)">
+                    </div>
+                </div>
+
+                <!-- Tretí riadok -->
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover-lift p-4">
+                        <img src="https://kancirtomas.xyz/certifikat5.webp" alt="Certifikát 5" class="w-full h-auto object-contain certificate-img" onclick="openLightbox(this.src)">
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover-lift p-4">
+                        <img src="https://kancirtomas.xyz/certifikat6.webp" alt="Certifikát 6" class="w-full h-auto object-contain certificate-img" onclick="openLightbox(this.src)">
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover-lift p-4">
+                        <img src="https://kancirtomas.xyz/certifikat7.webp" alt="Certifikát 7" class="w-full h-auto object-contain certificate-img" onclick="openLightbox(this.src)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 text-white" style="background-color: #1F2937;">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Tomáš Kancír</h4>
+                    <p class="text-gray-300">Profesionálne masáže priamo u vás doma.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Rýchle linky</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="text-gray-300 hover:text-purple-400 transition">Domov</a></li>
+                        <li><a href="/sluzby" class="text-gray-300 hover:text-purple-400 transition">Služby</a></li>
+                        <li><a href="/cennik" class="text-gray-300 hover:text-purple-400 transition">Cenník</a></li>
+                        <li><a href="/kontakt" class="text-gray-300 hover:text-purple-400 transition">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Sledujte ma</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl hover:text-purple-400 transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-2xl hover:text-purple-400 transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-2xl hover:text-purple-400 transition"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-6 text-center">
+                <p class="text-gray-300">&copy; 2026 Tomáš Kancír - Mobilný Masér. Všetky práva vyhradené.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
+        }, observerOptions);
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') { closeLightbox(); }
+        });
+    </script>
+
+</body>
+</html>

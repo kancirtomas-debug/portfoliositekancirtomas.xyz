@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kontakt - Objednajte si masáž online alebo nás kontaktujte. Tomáš Kancír - Mobilný Masér.">
+    <title>Kontakt | Tomáš Kancír - Mobilný Masér</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        html { scroll-behavior: smooth; }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(216, 180, 254, 0.3); }
+    </style>
+</head>
+<body class="bg-white text-black">
+
+    <!-- Navigácia -->
+    <nav class="fixed top-0 w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="flex items-center space-x-2">
+                    <i class="fas fa-spa text-2xl" style="color: #D8B4FE;"></i>
+                    <span class="text-xl font-bold">Tomáš Kancír</span>
+                </a>
+
+                <div class="hidden md:flex space-x-6">
+                    <a href="/" class="hover:text-purple-400 transition">Domov</a>
+                    <a href="/omne" class="hover:text-purple-400 transition">O mne</a>
+                    <a href="/sluzby" class="hover:text-purple-400 transition">Služby</a>
+                    <a href="/cennik" class="hover:text-purple-400 transition">Cenník</a>
+                    <a href="/vzdelanie" class="hover:text-purple-400 transition">Vzdelanie</a>
+                    <a href="/recenzie" class="hover:text-purple-400 transition">Recenzie</a>
+                    <a href="/kontakt" class="hover:text-purple-400 transition font-semibold" style="color: #D8B4FE;">Kontakt</a>
+                </div>
+
+                <button id="mobileMenuBtn" class="md:hidden text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-2">
+                <a href="/" class="block py-2 hover:text-purple-400 transition">Domov</a>
+                <a href="/omne" class="block py-2 hover:text-purple-400 transition">O mne</a>
+                <a href="/sluzby" class="block py-2 hover:text-purple-400 transition">Služby</a>
+                <a href="/cennik" class="block py-2 hover:text-purple-400 transition">Cenník</a>
+                <a href="/vzdelanie" class="block py-2 hover:text-purple-400 transition">Vzdelanie</a>
+                <a href="/recenzie" class="block py-2 hover:text-purple-400 transition">Recenzie</a>
+                <a href="/kontakt" class="block py-2 hover:text-purple-400 transition">Kontakt</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero banner -->
+    <section class="pt-24 pb-12 px-4" style="background: linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%);">
+        <div class="container mx-auto text-center fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Kontakt</h1>
+            <p class="text-lg text-gray-700">Napíšte mi alebo si rovno rezervujte termín</p>
+        </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section class="py-16 px-4" style="background-color: #F9FAFB;">
+        <div class="container mx-auto fade-in">
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- Kontaktný formulár -->
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-semibold mb-6">Napíšte mi</h3>
+                    <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+                        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                        <input type="hidden" name="subject" value="Nová správa z webstránky Tomáš Kancír">
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Meno *</label>
+                                <input type="text" name="meno" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Priezvisko *</label>
+                                <input type="text" name="priezvisko" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Mesto *</label>
+                            <input type="text" name="mesto" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Email *</label>
+                            <input type="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Tel. číslo *</label>
+                            <input type="tel" name="telefon" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Zdravotný stav *</label>
+                            <p class="text-xs text-gray-500 mb-2">
+                                Uveďte prosím dlhodobé diagnózy, ochorenia napr.problémy s tlakom (nízky/vysoký),
+                                aby bola masáž prispôsobená vám.
+                                Príklad: Zápal pľúc 22.4.2022...
+                            </p>
+                            <textarea name="zdravotny_stav" rows="6" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3 text-white font-semibold rounded-lg hover:opacity-90 transition" style="background-color: #D8B4FE;">
+                            Odoslať správu
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Online rezervácia + Info -->
+                <div class="space-y-6">
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-semibold mb-4">Online rezervácia</h3>
+                        <p class="text-gray-700 mb-6">
+                            Rezervujte si dátum a čas, ktorý vám vyhovuje.
+                        </p>
+                        <a href="https://cal.com/kanto/wellness-masaz" target="_blank" class="block w-full py-4 text-center text-white font-semibold rounded-lg hover:opacity-90 transition" style="background-color: #D8B4FE;">
+                            <i class="fas fa-calendar-check mr-2"></i>
+                            Rezervovať presný termín online
+                        </a>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-semibold mb-4">Kontaktné údaje</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-phone text-2xl mr-4" style="color: #D8B4FE;"></i>
+                                <div>
+                                    <p class="font-medium">Telefón</p>
+                                    <a href="tel:+421908109204" class="text-gray-700 hover:text-purple-400">+421 908 109 204</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-2xl mr-4" style="color: #D8B4FE;"></i>
+                                <div>
+                                    <p class="font-medium">Email</p>
+                                    <a href="mailto:kancir.tomas@gmail.com" class="text-gray-700 hover:text-purple-400">kancir.tomas@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-2xl mr-4" style="color: #D8B4FE;"></i>
+                                <div>
+                                    <p class="font-medium">Lokalita</p>
+                                    <p class="text-gray-700">Prešov a okolie</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 text-white" style="background-color: #1F2937;">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Tomáš Kancír</h4>
+                    <p class="text-gray-300">Profesionálne masáže priamo u vás doma.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Rýchle linky</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="text-gray-300 hover:text-purple-400 transition">Domov</a></li>
+                        <li><a href="/sluzby" class="text-gray-300 hover:text-purple-400 transition">Služby</a></li>
+                        <li><a href="/cennik" class="text-gray-300 hover:text-purple-400 transition">Cenník</a></li>
+                        <li><a href="/kontakt" class="text-gray-300 hover:text-purple-400 transition">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Sledujte ma</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl hover:text-purple-400 transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-2xl hover:text-purple-400 transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-2xl hover:text-purple-400 transition"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-6 text-center">
+                <p class="text-gray-300">&copy; 2026 Tomáš Kancír - Mobilný Masér. Všetky práva vyhradené.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
+        }, observerOptions);
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
